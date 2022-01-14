@@ -6,7 +6,7 @@ public class DrawingUtil {
         var deltaY = graphicsWithDelta.getDeltaY();
 
         g.drawRect(fieldUnit.getxCoord() + deltaX, fieldUnit.getyCoord() + deltaY,
-                fieldUnit.getDimension().width, fieldUnit.getDimension().height);
+                fieldUnit.getForm().width, fieldUnit.getForm().height);
     }
 
     public static void drawField(GraphicsWithDelta graphicsWithDelta) {

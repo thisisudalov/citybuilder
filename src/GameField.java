@@ -3,6 +3,18 @@ import java.util.Set;
 
 public class GameField {
 
+    private GameField() {}
+
+    private static GameField instance;
+
+    public static GameField getInstance() {
+        if (instance == null) {
+            instance = new GameField();
+        }
+
+        return instance;
+    }
+
     private final Set<FieldUnit> state = new HashSet<>();
 
     public void draw(GraphicsWithDelta graphicsWithDelta) {
@@ -15,6 +27,11 @@ public class GameField {
     }
 
     public void putNewUnit(FieldUnit fieldUnit) {
-
+        state.forEach(existingUnit -> {
+                if (existingUnit.getForm().intersects(fieldUnit.getForm())) {
+                    throw new CollisionException("Objects must not intersect");
+                }
+        });
+        state.add(fieldUnit);
     }
 }

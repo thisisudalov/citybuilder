@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameFrame extends JFrame {
-    GamePanel gamePanel = new GamePanel();
+    GamePanel gamePanel = GamePanel.getInstance();
 
     GameFrame() {
         this.add(gamePanel);

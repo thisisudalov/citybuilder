@@ -18,19 +18,19 @@ public class KeyboardListener extends KeyAdapter {
     }
 
     public void update() {
-        if(keysToIsPressed.get(KeyEvent.VK_UP)) {
+        if (keysToIsPressed.get(KeyEvent.VK_UP)) {
             CameraPosition.goTop();
         }
 
-        if(keysToIsPressed.get(KeyEvent.VK_DOWN)) {
+        if (keysToIsPressed.get(KeyEvent.VK_DOWN)) {
             CameraPosition.goBot();
         }
 
-        if(keysToIsPressed.get(KeyEvent.VK_LEFT)) {
+        if (keysToIsPressed.get(KeyEvent.VK_LEFT)) {
             CameraPosition.goLeft();
         }
 
-        if(keysToIsPressed.get(KeyEvent.VK_RIGHT)) {
+        if (keysToIsPressed.get(KeyEvent.VK_RIGHT)) {
             CameraPosition.goRight();
         }
     }

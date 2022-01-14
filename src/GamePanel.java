@@ -5,20 +5,30 @@ public class GamePanel extends JPanel implements Runnable {
 
     private final Thread gameThread;
     private final Timer moneyGivingTimer;
-    private static final GameField GAME_FIELD = new GameField();
+    private static final GameField GAME_FIELD = GameField.getInstance();
     private static final GraphicsWithDelta GRAPHICS_WITH_DELTA = new GraphicsWithDelta();
-    private PlayerMoney playerMoney;
+    private final PlayerMoney playerMoney;
+    private static GamePanel instance;
 
-    public GamePanel() {
+    private GamePanel() {
         this.setPreferredSize(Constants.DIMENSION);
         this.setFocusable(true);
         this.addKeyListener(new KeyboardListener());
+        this.addMouseListener(new MouseListener());
 
         playerMoney = PlayerMoney.getInstance();
         moneyGivingTimer = new Timer(1000, new MoneyGivingListener());
         moneyGivingTimer.start();
         gameThread = new Thread(this, "Game Thread");
         gameThread.start();
+    }
+
+    public static GamePanel getInstance() {
+        if (instance == null) {
+            instance = new GamePanel();
+        }
+
+        return instance;
     }
 
     public void paint(Graphics g) {
@@ -34,6 +44,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     private void update() {
 
+    }
+
+    public void drawExceptionPanel(String msg, Point point) {
+        ExceptionPanelDrawer.draw(msg, getGraphics(), point);
     }
 
     @SuppressWarnings("InfiniteLoopStatement")
